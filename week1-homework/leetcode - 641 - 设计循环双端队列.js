@@ -1,60 +1,4 @@
 /** 
- * leetcode - 66 - 加一        
- * @param {number[]} digits
- * @return {number[]}
- */
-var plusOne = function (digits) {
-    if (digits[0] === 0) {
-        return [1];
-    }
-    if (digits[digits.length - 1] + 1 <= 9) {
-        digits[digits.length - 1] += 1;
-        return digits;
-    }
-    for (let i = digits.length - 1; i >= 0; i--) {
-        if (digits[i] + 1 === 10) {
-            digits[i] = 0;
-            if (i === 0) {
-                digits.unshift(1);
-                break;
-            }
-            continue;
-        } else {
-            digits[i] += 1;
-            break;
-        }
-    }
-    return digits;
-};
-
-/** 
- * leetcode - 21 - 合并两个有序链表
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
-var mergeTwoLists = function (l1, l2) {
-    const perHead = new ListNode(null, null);
-    let current = perHead;
-    while (l1 !== null && l2 !== null) {
-        if (l1.val > l2.val) {
-            current.next = l2;
-            l2 = l2.next;
-        } else {
-            current.next = l1;
-            l1 = l1.next;
-        }
-        current = current.next;
-    }
-    if (l1 !== null) {
-        current.next = l1;
-    } else if (l2 !== null) {
-        current.next = l2;
-    }
-    return perHead.next;
-};
-
-/** 
  * leetcode - 641 - 设计循环双端队列
  */
 /**
@@ -150,25 +94,4 @@ MyCircularDeque.prototype.isEmpty = function () {
  */
 MyCircularDeque.prototype.isFull = function () {
     return this.que.length === this.maxLimit ? true : false;
-};
-
-/** 
- * leetcode - 560 - 和为K的子数组
- * @param {number[]} nums
- * @param {number} k
- * @return {number}
- */
-var subarraySum = function (nums, k) {
-    nums.unshift(0);
-    const sumArray = [0];
-    for (let i = 1; i < nums.length; i++) {
-        sumArray[i] = sumArray[i - 1] + nums[i];
-    }
-    const countMap = {};
-    let ans = 0;
-    for (let i = 0; i < sumArray.length; i++) {
-        countMap[sumArray[i]] = (countMap[sumArray[i]] || 0) + 1;
-        ans += countMap[sumArray[i + 1] - k] || 0;
-    }
-    return ans;
 };
