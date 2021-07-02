@@ -1,7 +1,8 @@
 /**
  * leetcode - 1074 - 元素和为目标值的子矩阵数量
  */
-// 解法1思路：先将矩阵预处理为前缀和矩阵，然后枚举每一个子矩阵，计算其矩阵和
+// 思路：先将矩阵预处理为前缀和矩阵，然后枚举每一个子矩阵，计算其矩阵和
+// (这道题力扣上提交，有个测试用例没过，自己用log调试也没找出问题来……助教大大有时间的话可以帮我看一下嘛)
 var numSubmatrixSumTarget = function (matrix, target) {
     const row = matrix.length;
     const col = matrix[0].length;
